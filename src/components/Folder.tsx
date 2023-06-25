@@ -17,32 +17,32 @@ const Folder = ({
   const [editFolder, setEditFolder] = useState(explorer.name);
   const [showEditInput, setShowEditInput] = useState(false);
   const handleNewFolder = (
-    e: React.SyntheticEvent<EventTarget>,
+    _e: React.SyntheticEvent<EventTarget>,
     isFolder: boolean
   ) => {
-    e.stopPropagation();
+    _e.stopPropagation();
     setShowInput({
       visible: true,
       isFolder: isFolder,
     });
     setExpand(true);
   };
-  const handleDeteFolder = (e: React.SyntheticEvent<EventTarget>) => {
-    e.stopPropagation();
+  const handleDeteFolder = (_e: React.SyntheticEvent<EventTarget>) => {
+    _e.stopPropagation();
     handleDeleteNode(explorer.id);
   };
-  const addNewFolder = (e: React.SyntheticEvent<EventTarget>) => {
-    e.preventDefault();
+  const addNewFolder = (_e: React.SyntheticEvent<EventTarget>) => {
+    _e.preventDefault();
     handleInsertNode(explorer.id, input, showInput.isFolder);
     setShowInput({ ...showInput, visible: false });
   };
-  const handleUpdateFile = (e: React.SyntheticEvent<EventTarget>) => {
-    e.preventDefault();
+  const handleUpdateFile = (_e: React.SyntheticEvent<EventTarget>) => {
+    _e.preventDefault();
     handleUpdateNode(explorer.id, editInput);
     setShowEdit(false);
   };
-  const handleUpdateFolder = (e: React.SyntheticEvent<EventTarget>) => {
-    e.stopPropagation();
+  const handleUpdateFolder = (_e: React.SyntheticEvent<EventTarget>) => {
+    _e.stopPropagation();
     handleUpdateNode(explorer.id, editFolder);
     setShowEditInput(false);
   };
@@ -64,15 +64,15 @@ const Folder = ({
           <span style={{ margin: "0 5px 2px 5px", display: "flex" }}>
             📁
             {showEditInput ? (
-              <form onSubmit={(e) => handleUpdateFolder(e)}>
+              <form onSubmit={(_e) => handleUpdateFolder(_e)}>
                 <input
                   value={editFolder}
-                  onChange={(e) => {
-                    e.stopPropagation();
-                    setEditFolder(e.target.value);
+                  onChange={(_e) => {
+                    _e.stopPropagation();
+                    setEditFolder(_e.target.value);
                   }}
-                  onClick={(e) => e.stopPropagation()}
-                  onFocus={(e) => e.stopPropagation()}
+                  onClick={(_e) => _e.stopPropagation()}
+                  onFocus={(_e) => _e.stopPropagation()}
                 />
               </form>
             ) : (
@@ -82,7 +82,7 @@ const Folder = ({
           {!showEditInput ? (
             <div style={{ display: "flex" }}>
               <button
-                onClick={(e) => handleNewFolder(e, true)}
+                onClick={(_e) => handleNewFolder(_e, true)}
                 style={{
                   fontSize: "12px",
                   background: "white",
@@ -92,7 +92,7 @@ const Folder = ({
                 Folder +
               </button>
               <button
-                onClick={(e) => handleNewFolder(e, false)}
+                onClick={(_e) => handleNewFolder(_e, false)}
                 style={{
                   fontSize: "12px",
                   background: "white",
@@ -103,7 +103,7 @@ const Folder = ({
                 File +
               </button>
               <button
-                onClick={(e) => handleDeteFolder(e)}
+                onClick={(_e) => handleDeteFolder(_e)}
                 style={{
                   fontSize: "12px",
                   background: "white",
@@ -128,9 +128,9 @@ const Folder = ({
           ) : (
             <button
               type="submit"
-              onClick={(e) => {
-                e.stopPropagation();
-                handleUpdateFolder(e);
+              onClick={(_e) => {
+                _e.stopPropagation();
+                handleUpdateFolder(_e);
               }}
             >
               Save ✅
@@ -146,7 +146,7 @@ const Folder = ({
               <span style={{ marginTop: "5px" }}>
                 {showInput.isFolder ? "📁" : "📄"}
               </span>
-              <form onSubmit={(e) => addNewFolder(e)}>
+              <form onSubmit={(_e) => addNewFolder(_e)}>
                 <input
                   type="text"
                   autoFocus
@@ -160,7 +160,7 @@ const Folder = ({
                     cursor: "pointer",
                   }}
                   onBlur={() => setShowInput({ ...showInput, visible: false })}
-                  onChange={(e) => setInput(e.target.value)}
+                  onChange={(_e) => setInput(_e.target.value)}
                 />
               </form>
             </div>
@@ -195,10 +195,10 @@ const Folder = ({
           {showEdit ? (
             <>
               <span style={{ display: "flex" }}>
-                <form onSubmit={(e) => handleUpdateFile(e)}>
+                <form onSubmit={(_e) => handleUpdateFile(_e)}>
                   <input
                     value={editInput}
-                    onChange={(e) => setEditInput(e.target.value)}
+                    onChange={(_e) => setEditInput(_e.target.value)}
                   />
                   <button type="submit">✅</button>
                 </form>
@@ -209,7 +209,7 @@ const Folder = ({
           ) : (
             <span>
               {explorer.name}
-              <button onClick={(e) => handleDeteFolder(e)}>❌</button>
+              <button onClick={(_e) => handleDeteFolder(_e)}>❌</button>
               <button onClick={() => setShowEdit(true)}>🖊</button>
             </span>
           )}
