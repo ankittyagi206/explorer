@@ -114,7 +114,7 @@ const Folder = ({
                 Delete
               </button>
               <button
-                onClick={(e) => setShowEditInput(true)}
+                onClick={() => setShowEditInput(true)}
                 style={{
                   fontSize: "12px",
                   background: "white",
@@ -203,14 +203,14 @@ const Folder = ({
                   <button type="submit">✅</button>
                 </form>
 
-                <button onClick={(e) => setShowEdit(false)}>❌</button>
+                <button onClick={() => setShowEdit(false)}>❌</button>
               </span>
             </>
           ) : (
             <span>
               {explorer.name}
               <button onClick={(e) => handleDeteFolder(e)}>❌</button>
-              <button onClick={(e) => setShowEdit(true)}>🖊</button>
+              <button onClick={() => setShowEdit(true)}>🖊</button>
             </span>
           )}
         </span>
