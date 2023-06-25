@@ -16,7 +16,10 @@ const Folder = ({
   const [editInput, setEditInput] = useState(explorer.name);
   const [editFolder, setEditFolder] = useState(explorer.name);
   const [showEditInput, setShowEditInput] = useState(false);
-  const handleNewFolder = (e: any, isFolder: boolean) => {
+  const handleNewFolder = (
+    e: React.SyntheticEvent<EventTarget>,
+    isFolder: boolean
+  ) => {
     e.stopPropagation();
     setShowInput({
       visible: true,
@@ -24,23 +27,21 @@ const Folder = ({
     });
     setExpand(true);
   };
-  const handleDeteFolder = (e: any) => {
+  const handleDeteFolder = (e: React.SyntheticEvent<EventTarget>) => {
     e.stopPropagation();
     handleDeleteNode(explorer.id);
   };
-  const addNewFolder = (e: any) => {
+  const addNewFolder = (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault();
     handleInsertNode(explorer.id, input, showInput.isFolder);
     setShowInput({ ...showInput, visible: false });
   };
-  const handleUpdateFile = (e: any) => {
+  const handleUpdateFile = (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault();
     handleUpdateNode(explorer.id, editInput);
     setShowEdit(false);
   };
-  const handleUpdateFolder = (e: any) => {
-    // eslint-disable-next-line no-debugger
-    debugger;
+  const handleUpdateFolder = (e: React.SyntheticEvent<EventTarget>) => {
     e.stopPropagation();
     handleUpdateNode(explorer.id, editFolder);
     setShowEditInput(false);
